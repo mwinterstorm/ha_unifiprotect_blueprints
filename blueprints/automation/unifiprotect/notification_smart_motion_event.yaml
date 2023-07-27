@@ -5,7 +5,7 @@ blueprint:
   description: |
     ## UniFi Protect Motion / Smart Detection Notifications
 
-    This blueprint will send push notifications to a Home Assistant mobile app when a camera detections motion or a
+    This blueprint will send push notifications to a maxtrix notification channel set up in Home Assistant app when a camera detections motion or a
     smart detection.
 
     ### Required Settings
@@ -34,6 +34,8 @@ blueprint:
     [1]: https://companion.home-assistant.io/docs/notifications/notifications-basic#sending-notifications-to-multiple-devices
     [2]: https://companion.home-assistant.io/docs/notifications/actionable-notifications/
     [3]: https://www.home-assistant.io/docs/configuration/remote/
+
+    ### ADAPTED FROM https://github.com/AngellusMortis/unifiprotect_blueprints
   input:
     obj_sensor:
       name: Detection Sensor
@@ -58,7 +60,7 @@ blueprint:
         The notification target for mobile apps notifications. Can be `notifiy.notify` or any Mobile app notify service
         (starts with `notify.mobile_app_`).
         https://companion.home-assistant.io/docs/notifications/notifications-basic#sending-notifications-to-multiple-devices
-      default: "notify.notify"
+      default: "notify.matrix"
       selector:
         text:
     channel:
@@ -87,7 +89,7 @@ blueprint:
       description: >
         Delay before sending another notification for this camera after the last event.
         Is also the interval you have to respond to actions in notification.
-      default: 120
+      default: 60
       selector:
         number:
           max: 300
